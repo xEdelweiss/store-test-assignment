@@ -34,4 +34,7 @@ return [
     'product' => [
         'items_per_page' => 10,
     ],
+    'order' => [
+        'items_per_page' => 10,
+    ],
 ];

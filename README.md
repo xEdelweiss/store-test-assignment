@@ -21,8 +21,8 @@
   * [x] See products details
   * ~~Add/Update/Remove products~~ _(out of scope)_
 * Order
-  * [ ] Make order
-  * [ ] See order details
+  * [x] Make order
+  * [x] See order details
   * ~~Filter orders~~ _(out of scope)_
 
 **Events and their possible use**:
