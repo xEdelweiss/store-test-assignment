@@ -12,8 +12,8 @@
 * User
   * ~~Registration~~ _(out of scope)_
   * ~~Authentication~~ _(out of scope)_
-  * [ ] See orders history
-  * Rate order
+  * [x] See orders history
+  * [ ] Rate order
   * ~~Update profile~~ _(out of scope)_
 * Product
   * [x] List products

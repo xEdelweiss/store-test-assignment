@@ -31,6 +31,11 @@ return [
         ],
     ],
 
+    'user' => [
+        'order_history' => [
+            'items_per_page' => 10,
+        ],
+    ],
     'product' => [
         'items_per_page' => 10,
     ],
