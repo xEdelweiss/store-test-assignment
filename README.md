@@ -13,12 +13,12 @@
   * ~~Registration~~ _(out of scope)_
   * ~~Authentication~~ _(out of scope)_
   * [x] See orders history
-  * [ ] Rate order
+  * ~~Rate order~~ _(out of scope)_
   * ~~Update profile~~ _(out of scope)_
 * Product
   * [x] List products
   * [x] Filter products
-  * [x] See products details
+  * [x] See product details
   * ~~Add/Update/Remove products~~ _(out of scope)_
 * Order
   * [x] Make order
@@ -47,7 +47,6 @@
 **Order statuses**:
 * Created
 * ~~Paid~~ _(out of scope)_
-* Processing
 * Shipped
 * Delivered
 * ~~Cancelled~~ _(out of scope)_
@@ -55,7 +54,6 @@
 
 ### Possible improvements
 * Full-text search by title/description
-* Product quantity at the warehouse
 
 ### Structure
 

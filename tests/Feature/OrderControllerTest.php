@@ -2,9 +2,11 @@
 
 namespace Tests\Feature;
 
+use App\Events\OrderCreated;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use Illuminate\Support\Facades\Event;
 use Tests\TestCase;
 
 class OrderControllerTest extends TestCase
@@ -87,6 +89,26 @@ class OrderControllerTest extends TestCase
             ],
         ]);
     }
+
+    public function test_store_dispatches_event(): void
+    {
+        $this->seed();
+        $this->actingAs(User::find(1));
+
+        Event::fake();
+        $response = $this->post('/api/orders', [
+            'items' => [
+                [
+                    'product_id' => 1,
+                    'quantity' => 1
+                ]
+            ],
+        ]);
+
+        $response->assertStatus(201);
+        Event::assertDispatched(OrderCreated::class);
+    }
+
 
     public function test_store_fails_if_not_enough_in_stock(): void
     {

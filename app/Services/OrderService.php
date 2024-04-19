@@ -7,6 +7,8 @@ use App\DTOs\Order\CartItemDto;
 use App\DTOs\Order\OrderFilterDto;
 use App\DTOs\Product\StockRequirementsDto;
 use App\DTOs\Product\ProductInStockDto;
+use App\Events\OrderCreated;
+use App\Events\OrderShipped;
 use App\Models\Order;
 use App\Models\User;
 use App\Services\Order\OrderStatus;
@@ -39,6 +41,8 @@ class OrderService
             ]);
         }
 
+        $this->dispatchOrderStatusChangeEvent($order);
+
         return $order;
     }
 
@@ -51,6 +55,27 @@ class OrderService
             ->paginate($perPage ?? $this->itemsPerPage);
     }
 
+    public function isAvailableForShipment(Order $order): bool
+    {
+        try {
+            $this->ensureOrderStatusChangeValid($order->status, OrderStatus::Shipped);
+            return true;
+        } catch (\Throwable $e) {
+            return false;
+        }
+    }
+
+    public function markOrderShipped(Order $order, string $trackingNumber): void
+    {
+        $this->ensureOrderStatusChangeValid($order->status, OrderStatus::Shipped);
+
+        $order->status = OrderStatus::Shipped;
+        $order->tracking_number = $trackingNumber;
+        $order->save();
+
+        $this->dispatchOrderStatusChangeEvent($order);
+    }
+
     private function ensureProductsExist(CartDto $cartDto): void
     {
         $requirements = new StockRequirementsDto(array_map(
@@ -59,5 +84,19 @@ class OrderService
         ));
 
         $this->productService->checkStockQuantity($requirements);
+    }
+
+    private function ensureOrderStatusChangeValid(OrderStatus $previousStatus, OrderStatus $nextStatus): void
+    {
+        // here can be order validation logic
+    }
+
+    private function dispatchOrderStatusChangeEvent(Order $order): void
+    {
+        match ($order->status) {
+            OrderStatus::Created => OrderCreated::dispatch($order),
+            OrderStatus::Shipped => OrderShipped::dispatch($order),
+            default => null
+        };
     }
 }
