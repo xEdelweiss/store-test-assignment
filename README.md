@@ -1,5 +1,16 @@
 # Test Assignment
 
+### Run tests
+
+API is covered with feature tests.
+
+1. `git clone https://github.com/xEdelweiss/store-test-assignment.git`
+2. `cd store-test-assignment`
+3. `composer install`
+4. `cp .env.example .env`
+5. `php artisan key:generate`
+6. `php vendor/bin/phpunit` 
+
 ### Feature that are considered out of scope
 
 * Prices are not saved for the order.
