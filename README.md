@@ -16,9 +16,9 @@
   * Rate order
   * ~~Update profile~~ _(out of scope)_
 * Product
-  * [ ] List products
-  * [ ] Filter products
-  * [ ] See products details
+  * [x] List products
+  * [x] Filter products
+  * [x] See products details
   * ~~Add/Update/Remove products~~ _(out of scope)_
 * Order
   * [ ] Make order
