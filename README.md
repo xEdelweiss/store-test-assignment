@@ -1,4 +1,4 @@
-# Test Assignment
+# Store Test Assignment
 
 ### Run tests
 
@@ -11,7 +11,7 @@ API is covered with feature tests.
 5. `php artisan key:generate`
 6. `php vendor/bin/phpunit` 
 
-### Feature that are considered out of scope
+### Features that are considered out of scope
 
 * Prices are not saved for the order.
 * Cart is processed on a frontend.
@@ -24,7 +24,7 @@ API is covered with feature tests.
   * ~~Authentication~~ _(out of scope)_
   * [x] See orders history
   * ~~Rate order~~ _(out of scope)_
-  * ~~Update profile~~ _(out of scope)_
+  * [x] Update profile
 * Product
   * [x] List products
   * [x] Filter products
@@ -40,12 +40,12 @@ API is covered with feature tests.
   * Block products for some amount of time
   * Track order start for analytics
 * ~~OrderPaid~~ _(out of scope)_
-  * Trigger order shipping from warehouse
+  * Trigger order shipping from the warehouse
   * Financial analytics
 * OrderShipped
   * Client notification
   * Tracking logistics
-* OrderDelivered _(we'll consider this as completed)_
+* ~~OrderDelivered~~ _(consider as completed, out of scope)_
   * Track order completion for analytics
 * ~~OrderCancelled~~ _(out of scope)_
   * Prepare warehouse for products returning
@@ -67,4 +67,4 @@ API is covered with feature tests.
 
 ### Structure
 
-With growth of the project, we could use `laravel-modules` to divide code further. For now, it should be enough to keep default Laravel structure and use subdirectories to separate modules, e.g. `App\Events\Orders\OrderCreated`.
+With the project's growth, we could use `laravel-modules` to further divide code. For now, it should be enough to keep the default Laravel structure and use subdirectories to separate modules, e.g. `App\Events\Orders\OrderCreated`.
