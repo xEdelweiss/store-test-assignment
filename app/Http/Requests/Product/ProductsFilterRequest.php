@@ -12,7 +12,7 @@ class ProductsFilterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true; // authorization is out of scope
+        return true;
     }
 
     /**

@@ -16,7 +16,7 @@ class UserControllerTest extends TestCase
         $this->seed();
         $this->actingAs(User::find(1));
 
-        $response = $this->get('/api/cabinet/orders');
+        $response = $this->getJson('/api/cabinet/orders');
 
         $response->assertStatus(200);
         $response->assertJsonStructure([
@@ -40,7 +40,7 @@ class UserControllerTest extends TestCase
         User::factory(['name' => 'Old name'])->create();
 
         $this->actingAs(User::find(1));
-        $response = $this->put('/api/cabinet/profile', [
+        $response = $this->putJson('/api/cabinet/profile', [
             'name' => 'New name',
         ]);
 

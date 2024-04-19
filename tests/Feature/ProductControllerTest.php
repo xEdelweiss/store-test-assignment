@@ -14,7 +14,7 @@ class ProductControllerTest extends TestCase
     {
         $this->seed();
 
-        $response = $this->get('/api/products');
+        $response = $this->getJson('/api/products');
 
         $response->assertStatus(200);
         $response->assertJsonCount(10, 'data');
@@ -29,7 +29,7 @@ class ProductControllerTest extends TestCase
             'price' => 200
         ])->create();
 
-        $response = $this->get('/api/products?max_price=100');
+        $response = $this->getJson('/api/products?max_price=100');
 
         $response->assertStatus(200);
         $response->assertJsonCount(2, 'data');
@@ -47,7 +47,7 @@ class ProductControllerTest extends TestCase
             'price' => 200,
         ])->create();
 
-        $response = $this->get('/api/products?min_price=110');
+        $response = $this->getJson('/api/products?min_price=110');
 
         $response->assertStatus(200);
         $response->assertJsonCount(3, 'data');
@@ -65,7 +65,7 @@ class ProductControllerTest extends TestCase
             'title' => 'Another title',
         ])->create();
 
-        $response = $this->get('/api/products?title=other');
+        $response = $this->getJson('/api/products?title=other');
 
         $response->assertStatus(200);
         foreach ($response->json('data') as $product) {
@@ -77,7 +77,7 @@ class ProductControllerTest extends TestCase
     {
         $this->seed();
 
-        $response = $this->get('/api/products/1');
+        $response = $this->getJson('/api/products/1');
 
         $response->assertStatus(200);
         $response->assertJsonStructure([

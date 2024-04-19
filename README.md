@@ -2,7 +2,6 @@
 
 ### Feature that are considered out of scope
 
-* Authorization.
 * Prices are not saved for the order.
 * Cart is processed on a frontend.
 

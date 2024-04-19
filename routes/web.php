@@ -14,12 +14,14 @@ Route::prefix('/api/products')->group(function () {
     Route::get('/{product}', [ProductController::class, 'show']);
 });
 
-Route::prefix('/api/orders')->group(function () {
-    Route::post('/', [OrderController::class, 'store']);
-    Route::get('/{order}', [OrderController::class, 'show']);
-});
+Route::middleware('auth')->group(function () {
+    Route::prefix('/api/orders')->group(function () {
+        Route::post('/', [OrderController::class, 'store']);
+        Route::get('/{order}', [OrderController::class, 'show']);
+    });
 
-Route::prefix('/api/cabinet')->group(function () {
-    Route::get('/orders', [UserController::class, 'ordersHistory']);
-    Route::put('/profile', [UserController::class, 'update']);
+    Route::prefix('/api/cabinet')->group(function () {
+        Route::get('/orders', [UserController::class, 'ordersHistory']);
+        Route::put('/profile', [UserController::class, 'update']);
+    });
 });

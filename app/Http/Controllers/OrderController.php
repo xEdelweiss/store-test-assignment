@@ -45,6 +45,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
+        abort_unless($order->user_id === auth()->id(), Response::HTTP_FORBIDDEN);
+
         return new OrderResource($order);
     }
 }

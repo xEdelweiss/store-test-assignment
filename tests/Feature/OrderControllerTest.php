@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 use App\Events\OrderCreated;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -17,7 +18,8 @@ class OrderControllerTest extends TestCase
     {
         $this->seed();
 
-        $response = $this->get('/api/orders/1');
+        $this->actingAs(Order::find(1)->user);
+        $response = $this->getJson('/api/orders/1');
 
         $response->assertStatus(200);
         $response->assertJsonStructure([
@@ -38,7 +40,7 @@ class OrderControllerTest extends TestCase
         $this->seed();
         $this->actingAs(User::find(1));
 
-        $response = $this->post('/api/orders', [
+        $response = $this->postJson('/api/orders', [
             'items' => [
                 [
                     'product_id' => 1,
@@ -96,7 +98,7 @@ class OrderControllerTest extends TestCase
         $this->actingAs(User::find(1));
 
         Event::fake();
-        $response = $this->post('/api/orders', [
+        $response = $this->postJson('/api/orders', [
             'items' => [
                 [
                     'product_id' => 1,
@@ -126,7 +128,7 @@ class OrderControllerTest extends TestCase
 
 
         $this->actingAs(User::find(1));
-        $response = $this->post('/api/orders', [
+        $response = $this->postJson('/api/orders', [
             'items' => [
                 [
                     'product_id' => 1,

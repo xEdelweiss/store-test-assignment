@@ -7,6 +7,7 @@ use App\Http\Resources\User\OrderHistoryResource;
 use App\Http\Resources\User\UserResource;
 use App\Services\UserService;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class UserController extends Controller
 {
